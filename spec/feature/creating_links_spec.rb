@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 RSpec.feature 'Users can create new links' do
   scenario "with valid attributes" do
     visit '/'
