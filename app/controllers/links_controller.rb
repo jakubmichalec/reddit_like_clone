@@ -1,40 +1,23 @@
 class LinksController < ApplicationController
   before_action :set_link, only: [:show, :edit, :update, :destroy]
 
-  def index
-    @links = Link.all
-  end
-
-  def new
-    @link = Link.new
-  end
+  expose(:link, attributes: :link_params)
+  expose(:links)
 
   def create
-    @link = Link.new(link_params)
-
-    if @link.save
+    if link.save
       flash[:notice] = "Link has been created"
-      redirect_to @link
+      redirect_to link
     else
       flash.now[:alert] = "Link has not been created"
       render 'new'
     end
   end
 
-  def show
-    @link = Link.find(params[:id])
-  end
-
-  def edit
-    @link = Link.find(params[:id])
-  end
-
   def update
-    @link = Link.find(params[:id])
-
-    if @link.update(link_params)
+    if link.update(link_params)
       flash[:notice] = "Link has been updated"
-      redirect_to @link
+      redirect_to link
     else
       flash.now[:alert] = "Link has not been updated"
       render 'edit'
@@ -42,8 +25,7 @@ class LinksController < ApplicationController
   end
 
   def destroy
-    @link = Link.find(params[:id])
-    @link.destroy
+    link.destroy
 
     flash[:notice] = "Link has been deleted"
     redirect_to links_path
@@ -56,7 +38,7 @@ class LinksController < ApplicationController
     end
 
     def set_link
-      @link = Link.find(params[:id])
+      link = Link.find(params[:id])
     rescue ActiveRecord::RecordNotFound
       flash[:alert] = "The link you looking for cannot be found"
       redirect_to links_path
