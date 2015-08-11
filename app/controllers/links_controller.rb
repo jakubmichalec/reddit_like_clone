@@ -1,4 +1,6 @@
 class LinksController < ApplicationController
+  before_action :set_link, only: [:show, :edit, :update, :destroy]
+
   def index
     @links = Link.all
   end
@@ -51,6 +53,13 @@ class LinksController < ApplicationController
 
     def link_params
       params.require(:link).permit(:title, :url, :content)
+    end
+
+    def set_link
+      @link = Link.find(params[:id])
+    rescue ActiveRecord::RecordNotFound
+      flash[:alert] = "The link you looking for cannot be found"
+      redirect_to links_path
     end
 
 end
