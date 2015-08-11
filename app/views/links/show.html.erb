@@ -1,3 +1,5 @@
 <h1><%= @link.title %></h1>
 <p><%= @link.url %></p>
 <%= @link.content %>
+
+<%= link_to 'Edit Link', edit_link_path(@link) %>
