@@ -8,7 +8,9 @@ class UsersController < ApplicationController
     @user = User.new(permitted_params)
 
     if @user.save
-      redirect_to root_url, notice: "Thank you for signing up"
+      session[:user_id] = @user.id
+      flash[:notice] = "Thank you for signing up"
+      redirect_to root_url
     else
       render 'new'
     end
