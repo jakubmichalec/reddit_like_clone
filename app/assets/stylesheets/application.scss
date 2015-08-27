@@ -1,6 +1,14 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
+@import
+  "_properties";
+@import "animate.scss";
 
 body {
   padding-top: 70px;
+}
+
+.sign {
+  @include fadeInDown(
+    $duration: 2s);
 }
