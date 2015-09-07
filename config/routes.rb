@@ -8,5 +8,6 @@ Rails.application.routes.draw do
   get 'logout' => 'sessions#destroy'
 
   get 'signup' => 'users#new'
-  resources :users
+  post '/users' => 'users#create'
+  get 'user/:id' => 'users#show', as: 'user'
 end

@@ -1,4 +1,10 @@
 RSpec.feature 'Users can create new links' do
+  let(:user) { create(:user) }
+
+  before do
+    login_as(user)
+  end
+
   scenario "with valid attributes" do
     visit '/'
 

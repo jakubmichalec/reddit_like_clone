@@ -1,9 +1,12 @@
 RSpec.feature 'Users can delete links' do
-  scenario 'successfully' do
-    create(:link, title: 'Awesome Link', url: 'www.example.com')
+  let(:user) { create(:user) }
+  let(:link) { create(:link, user: user) }
 
-    visit '/'
-    click_link 'Awesome Link'
+  before do
+    visit link_path(link)
+  end
+
+  scenario 'successfully' do
     click_link 'Delete Link'
 
     expect(page).to have_content 'Link has been deleted'

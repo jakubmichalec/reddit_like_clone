@@ -1,10 +1,13 @@
 class LinksController < ApplicationController
   before_action :set_link, only: [:show, :edit, :update, :destroy]
 
-  expose(:link, attributes: :link_params)
+  expose(:user) { User.find_by(id: user_id) }
+  expose(:link)
   expose(:links)
 
   def create
+    link = current_user.links.build(link_params)
+    link.user = current_user
     if link.save
       flash[:notice] = "Link has been created"
       redirect_to link
@@ -34,7 +37,7 @@ class LinksController < ApplicationController
   private
 
     def link_params
-      params.require(:link).permit(:title, :url, :content)
+      params.require(:link).permit(:title, :url, :content, :user_id)
     end
 
     def set_link

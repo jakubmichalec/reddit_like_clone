@@ -1,5 +1,6 @@
 FactoryGirl.define do
   factory :link do
-    title 'Default link'
+    title 'Awesome stuff'
+    url 'www.example.com'
   end
 end

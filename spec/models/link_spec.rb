@@ -1,9 +1,11 @@
 RSpec.describe Link, type: :model do
-  subject(:link) { Link.new(title: title, url: url, content: content) }
+  subject(:link) { Link.new(title: title, url: url, content: content, user_id: user_id) }
 
   let(:title) { 'Some random title' }
   let(:url) { 'www.google.com' }
-  let(:content) { nil}
+  let(:content) { nil }
+  let!(:user) { create(:user) }
+  let(:user_id) { user.id }
 
   it { expect(link).to be_valid }
 

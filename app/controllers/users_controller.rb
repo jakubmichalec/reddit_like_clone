@@ -2,6 +2,10 @@ class UsersController < ApplicationController
 
   expose(:user, attributes: :permitted_params)
 
+  def show
+
+  end
+
   def new
   end
 

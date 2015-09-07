@@ -1,6 +1,10 @@
 RSpec.feature 'Users can edit existing links' do
+  let(:user) { create(:user) }
+  let(:link) { create(:link, user: user)}
+
   before do
-    create(:link, title: "Awesome stuff", url: 'www.awesome.com')
+    visit link_path(link)
+    #login_as(user)
 
     visit '/'
     click_link "Awesome stuff"
