@@ -1,5 +1,7 @@
 class LinksController < ApplicationController
   before_action :set_link, only: [:show, :edit, :update, :destroy]
+  before_action :only_logged_users, only: [:edit, :update]
+  before_action :correct_user, only: [:edit, :update, :destroy]
 
   expose(:user) { User.find_by(id: user_id) }
   expose(:link)
@@ -37,7 +39,7 @@ class LinksController < ApplicationController
   private
 
     def link_params
-      params.require(:link).permit(:title, :url, :content, :user_id)
+      params.require(:link).permit(:title, :url, :content)
     end
 
     def set_link
@@ -47,4 +49,18 @@ class LinksController < ApplicationController
       redirect_to links_path
     end
 
+    def only_logged_users
+      unless logged_in?
+        flash[:danger] = "You must log in first"
+        redirect_to login_url
+      end
+    end
+
+    def correct_user
+      user = User.find(params[:id])
+        unless user == current_user
+          flash[:danger] = "You can change only your own links"
+          redirect_to root_url
+        end
+    end
 end

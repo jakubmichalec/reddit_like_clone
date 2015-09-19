@@ -4,7 +4,7 @@ RSpec.feature 'Users can view links' do
 
   scenario 'with all details' do
     visit '/'
-    click_link 'Awesome stuff'
+    click_link link.title
     expect(page.current_url).to eq link_url(link)
   end
 end
