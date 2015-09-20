@@ -1,0 +1,4 @@
+%h1= "Hello #{user.name}"
+- user.links.each do |link|
+  %h2= link_to link.title, link
+  %p= link.url

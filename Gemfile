@@ -14,14 +14,15 @@ gem 'decent_exposure'
 gem 'simple_form'
 gem 'bootstrap-sass', '~> 3.3.5'
 gem 'bcrypt'
-gem 'pry-rails'
 gem 'ffaker'
+gem "haml-rails", "~> 0.9"
 
 group :development, :test do
   gem 'byebug'
   gem 'web-console', '~> 2.0'
   gem 'spring'
   gem 'rspec-rails', '~> 3.0'
+  gem 'pry-rails'
 end
 
 group :test do
