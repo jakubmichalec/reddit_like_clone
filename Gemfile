@@ -16,6 +16,7 @@ gem 'bootstrap-sass', '~> 3.3.5'
 gem 'bcrypt'
 gem 'ffaker'
 gem "haml-rails", "~> 0.9"
+gem "font-awesome-rails"
 
 group :development, :test do
   gem 'byebug'
