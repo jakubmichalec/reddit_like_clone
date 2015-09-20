@@ -49,13 +49,6 @@ class LinksController < ApplicationController
       redirect_to links_path
     end
 
-    def only_logged_users
-      unless logged_in?
-        flash[:danger] = "You must log in first"
-        redirect_to login_url
-      end
-    end
-
     def correct_user
       user = User.find(params[:id])
         unless user == current_user
