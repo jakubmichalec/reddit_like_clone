@@ -1,5 +1,18 @@
-%h1 Links:
-= link_to 'New Link', new_link_path
-- links.each do |link|
-  %h2= link_to link.title, link
-  %p= link.url
+.col-sm-12
+  - links.each do |link|
+    .panel.panel-default.arrow.left
+      .panel-body
+        .row.col-sm-2
+          %div
+            = link_to link_vote_on_path(link, value: 1),  method: :post, |
+                      id: 'vote-up', remote: true do                     |
+              %i.fa.fa-thumbs-o-up.fa-2x
+          %span{:id => "link_vote_#{link.id}"}= link.total_votes
+          %div
+            = link_to link_vote_on_path(link, value: -1), method: :post, |
+                      id: 'vote-down', remote: true do                   |
+              %i.fa.fa-thumbs-o-down.fa-2x
+        .row.col-sm-10
+          = link_to link.title, link
+          .link-info
+            = "by: #{link.author} | #{link.created_at}"

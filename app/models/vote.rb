@@ -12,6 +12,6 @@ class Vote < ActiveRecord::Base
   private
 
     def update_link
-      self.link.update_link
+      self.link.update_rank
     end
 end

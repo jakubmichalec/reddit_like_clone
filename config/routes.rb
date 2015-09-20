@@ -2,8 +2,7 @@ Rails.application.routes.draw do
   root 'links#index'
 
   resources :links do
-    get '/up-vote', to: 'votes#up_vote', as: :up_vote
-    get '/down-vote', to: 'votes#down_vote', as: :down_vote
+    post '/vote', to: 'votes#vote_on', as: :vote_on
   end
 
   get 'login' => 'sessions#new'

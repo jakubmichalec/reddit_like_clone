@@ -20,9 +20,15 @@ class Link < ActiveRecord::Base
     self.votes.sum(:value).to_i
   end
 
-  def update_link
-    new_rank = up_votes - down_votes
+  def update_rank
+    self.update_attribute(:rank, total_votes) #to change
+  end
 
-    self.update_attribute(:rank, new_rank)
+  def author
+    self.user.name
+  end
+
+  def created_at
+    self[:created_at].strftime("%d/%m/%Y")
   end
 end

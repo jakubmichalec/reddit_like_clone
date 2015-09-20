@@ -1,0 +1,7 @@
+%div
+  = link_to link_up_vote_path(link), link: link,  method: :post, 'data-remote' => true do
+    %i.fa.fa-thumbs-o-up.fa-2x
+%span{id: "link_vote#{link.id}"}= link.votes.size
+%div
+  = link_to link_down_vote_path(link), link: link, method: :post, 'data-remote' => true do
+    %i.fa.fa-thumbs-o-down.fa-2x

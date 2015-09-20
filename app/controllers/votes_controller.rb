@@ -6,24 +6,18 @@ class VotesController < ApplicationController
     link.votes.where(user_id: current_user.id).first
   end
 
-  def up_vote
-    update_vote(1)
-    redirect_to :back
-  end
-
-  def down_vote
-    update_vote(-1)
-    redirect_to :back
-  end
-
-  private
-
-    def update_vote(new_value)
-      if vote
-        vote.update_attribute(:value, new_value)
-      else
-        vote = current_user.votes.create(value: new_value,
-                                  link: link, user: current_user)
-      end
+  def vote_on
+    if vote
+      vote.update_attribute(:value, params[:value])
+    else
+      vote = current_user.votes.create(value: params[:value],
+                                link: link, user: current_user)
     end
+    respond_to do |format|
+      format.html do
+        redirect_to :back
+      end
+      format.js
+    end
+  end
 end
