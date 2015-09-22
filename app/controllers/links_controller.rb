@@ -3,9 +3,9 @@ class LinksController < ApplicationController
   before_action :only_logged_users, only: [:edit, :update]
   before_action :correct_user, only: [:edit, :update, :destroy]
 
-  expose(:user) { User.find_by(id: user_id) }
+  expose(:user)
   expose(:link)
-  expose(:links)
+  expose(:links) { Link.includes(:user, comments: :user) } # resolve n+1
 
   def create
     link = current_user.links.build(link_params)
@@ -50,10 +50,9 @@ class LinksController < ApplicationController
     end
 
     def correct_user
-      user = User.find(params[:id])
-        unless user == current_user
-          flash[:danger] = "You can change only your own links"
-          redirect_to root_url
-        end
+      unless user == current_user
+        flash[:danger] = "You can change only your own links"
+        redirect_to root_url
+      end
     end
 end

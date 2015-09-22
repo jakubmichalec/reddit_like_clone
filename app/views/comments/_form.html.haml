@@ -1,0 +1,5 @@
+= simple_form_for [link, comment] do |f|
+  = f.input :body, as: :text, label: false, label_html: { id: 'comment_body'}
+  = f.input :user_id, as: :hidden, :input_html => { value: current_user.id }
+  = f.input :link_id, as: :hidden, :input_html => { value: link.id }
+  = f.button :submit, 'Add'

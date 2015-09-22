@@ -3,6 +3,7 @@ Rails.application.routes.draw do
 
   resources :links do
     post '/vote', to: 'votes#vote_on', as: :vote_on
+    resources :comments
   end
 
   get 'login' => 'sessions#new'

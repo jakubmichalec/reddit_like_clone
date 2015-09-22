@@ -1,6 +1,7 @@
 class Link < ActiveRecord::Base
   belongs_to :user
   has_many :votes, dependent: :destroy
+  has_many :comments, dependent: :destroy
   default_scope -> { order('rank DESC') }
 
   validates :title, presence: true, length: { minimum: 10, maximum: 50 }
