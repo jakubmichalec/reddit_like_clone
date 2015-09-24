@@ -7,7 +7,7 @@ class LinksController < ApplicationController
   expose(:link)
   expose(:links) { Link.includes(:user, comments: :user) } #n+1
   expose(:comment) { Comment.new }
-  expose(:comments, ancestor: :link)
+  expose(:comments)
 
   def create
     link = current_user.links.build(link_params)

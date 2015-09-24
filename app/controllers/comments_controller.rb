@@ -6,6 +6,7 @@ class CommentsController < ApplicationController
   def create
     comment = link.comments.build(comment_params)
     comment.user_id = current_user.id
+    comment.author = current_user.name
     if comment.save
       respond_to do |format|
         format.html { redirect_to link, notice: "Comment has been added" }
