@@ -25,11 +25,11 @@ class Link < ActiveRecord::Base
     self.update_attribute(:rank, total_votes) #to change
   end
 
-  def author
-    self.user.name
-  end
-
   def created_at
     self[:created_at].strftime("%d/%m/%Y")
+  end
+
+  def author
+    self.user.name
   end
 end

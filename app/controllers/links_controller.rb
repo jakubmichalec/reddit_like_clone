@@ -5,7 +5,9 @@ class LinksController < ApplicationController
 
   expose(:user)
   expose(:link)
-  expose(:links) { Link.includes(:user, comments: :user) } # resolve n+1
+  expose(:links) { Link.includes(:user, comments: :user) } #n+1
+  expose(:comment) { Comment.new }
+  expose(:comments, ancestor: :link)
 
   def create
     link = current_user.links.build(link_params)
@@ -43,7 +45,7 @@ class LinksController < ApplicationController
     end
 
     def set_link
-      link = Link.find(params[:id])
+      link = Link.find(params[:id]) #decent_exposure strategy
     rescue ActiveRecord::RecordNotFound
       flash[:alert] = "The link you looking for cannot be found"
       redirect_to links_path
