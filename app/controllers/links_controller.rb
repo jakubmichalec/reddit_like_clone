@@ -15,7 +15,7 @@ class LinksController < ApplicationController
     if link.save
       flash[:notice] = "Link has been created"
       redirect_to link
-    else
+  else
       flash.now[:alert] = "Link has not been created"
       render 'new'
     end
@@ -41,18 +41,18 @@ class LinksController < ApplicationController
   private
 
     def link_params
-      params.require(:link).permit(:title, :url, :content)
+      params.require(:link).permit(:title, :url, :content, :user_id)
     end
 
     def set_link
-      link = Link.find(params[:id]) #decent_exposure strategy
+      link = Link.find(params[:id])
     rescue ActiveRecord::RecordNotFound
       flash[:alert] = "The link you looking for cannot be found"
       redirect_to links_path
     end
 
     def correct_user
-      unless user == current_user
+      unless link.user == current_user
         flash[:danger] = "You can change only your own links"
         redirect_to root_url
       end

@@ -2,12 +2,10 @@ class CommentsController < ApplicationController
 
   expose(:link)
   expose(:comment)
-  expose(:comments) { Comment.includes(:user, link: :link)}
 
   def create
     comment = link.comments.build(comment_params)
-    #comment.user = current_user
-
+    comment.user_id = current_user.id
     if comment.save
       respond_to do |format|
         format.html { redirect_to link, notice: "Comment has been added" }

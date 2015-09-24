@@ -1,10 +1,9 @@
 RSpec.feature 'Users can edit existing links' do
   let(:user) { create(:user) }
-  let(:link) { create(:link, user: user)}
+  let!(:link) { create(:link, user: user)}
   let(:other_user) { create(:user) }
 
   before do
-    visit link_path(link)
     login_as(user)
 
     visit '/'
