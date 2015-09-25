@@ -12,6 +12,7 @@ $colHover       : #ecdbff;
 
 body {
   padding-top: 70px;
+  padding-bottom: 50px;
 }
 
 .sign {
@@ -45,3 +46,36 @@ body {
     color: $colDefault;
   }
 }
+
+ul.actions {
+  @extend .list-unstyled;
+  @extend .list-inline;
+  text-align: right;
+  padding-top: -2px;
+}
+
+a.edit, a.delete {
+  @extend .btn-sm;
+
+  &:before {
+    font-family: "FontAwesome";
+    padding-right: 0.5em;
+  }
+}
+
+a.edit {
+  @extend .btn-primary;
+
+  &:before {
+    @extend .fa-scissors;
+  }
+}
+
+a.delete {
+  @extend .btn-danger;
+
+  &:before {
+    @extend .fa-times;
+  }
+}
+

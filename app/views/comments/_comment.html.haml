@@ -1,3 +1,8 @@
-%div{:id => dom_id(comment)}
-= "Author: #{comment.author}"
-= comment.body
+.row
+  %div{:id => dom_id(comment)}
+    .col-sm-10.col-sm-offset-1
+      .panel.panel-default
+        .panel-heading
+          %strong= "#{time_ago_in_words(comment.created_at)} ago by #{comment.author}"
+        .panel-body
+          = comment.body

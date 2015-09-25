@@ -1,3 +1,3 @@
 = simple_form_for [link, comment], remote: true do |f|
   = f.input :body, as: :text, label: false, label_html: { id: 'comment_body'}
-  = f.button :submit, 'Add'
+  = f.button :submit, 'Add Comment', class: "btn btn-success"
