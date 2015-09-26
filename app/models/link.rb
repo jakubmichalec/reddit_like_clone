@@ -18,15 +18,21 @@ class Link < ActiveRecord::Base
   end
 
   def total_votes
-    self.votes.sum(:value).to_i
+    self.votes.count(:value).to_i
   end
 
   def update_rank
-    self.update_attribute(:rank, total_votes) #to change
+    self.update_attribute(:rank, rank_count)
   end
 
   def created_at
     self[:created_at].strftime("%d/%m/%Y")
+  end
+
+  def rank_count
+    time = ((self[:created_at] - Time.current) / 3600).round
+    score = (up_votes - 1) / (time + 2) ^ 2
+    return score
   end
 
   def author
