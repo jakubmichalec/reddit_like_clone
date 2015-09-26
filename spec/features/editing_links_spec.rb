@@ -41,8 +41,7 @@ RSpec.feature 'Users can edit existing links' do
 
     visit '/'
     click_link link.title
-    click_link 'Edit Link'
 
-    expect(page).to have_content "You can change only your own links"
+    expect(page).to_not have_content 'Edit Link'
   end
 end

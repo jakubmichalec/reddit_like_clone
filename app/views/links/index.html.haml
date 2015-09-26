@@ -2,18 +2,6 @@
   - links.each do |link|
     .panel.panel-default.arrow.left
       .panel-body
-        .row.col-sm-1
-          - if current_user
-            %div
-              = link_to link_vote_on_path(link, value: 1),  method: :post, |
-                        id: 'vote-up', remote: true do                     |
-                %i.fa.fa-thumbs-o-up.fa-2x
-            %span{:id => "link_vote_#{link.id}"}= link.total_votes
-            %div
-              = link_to link_vote_on_path(link, value: -1), method: :post, |
-                        id: 'vote-down', remote: true do                   |
-                %i.fa.fa-thumbs-o-down.fa-2x
-        .row.col-sm-11
-          = link_to link.title, link
-          .link-info
-            = "by: #{link.author} | #{link.created_at}"
+        = link_to link.title, link
+        .link-info
+          = "by: #{link.author} | #{link.created_at}"

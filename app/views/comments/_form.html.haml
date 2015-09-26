@@ -1,3 +1,4 @@
 = simple_form_for [link, comment], remote: true do |f|
-  = f.input :body, as: :text, label: false, label_html: { id: 'comment_body'}
+  = f.input :body, as: :text, label: false, label_html: { id: 'comment_body'}, |
+    placeholder: ' minimum 10 chars'
   = f.button :submit, 'Add Comment', class: "btn btn-success"

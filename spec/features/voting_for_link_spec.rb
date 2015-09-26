@@ -4,7 +4,7 @@ RSpec.feature 'User can vote and unvote link' do
 
   before do
     login_as(user)
-    visit '/'
+    visit link_path(link)
   end
 
   scenario '#vote up' do

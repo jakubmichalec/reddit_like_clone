@@ -54,6 +54,8 @@ ul.actions {
   padding-top: -2px;
 }
 
+/* BUTTONS */
+
 a.edit, a.delete {
   @extend .btn-sm;
 
@@ -79,3 +81,10 @@ a.delete {
   }
 }
 
+#vote-up {
+  color: #2ecc71;
+}
+
+#vote-down {
+  color: #e74c3c;
+}

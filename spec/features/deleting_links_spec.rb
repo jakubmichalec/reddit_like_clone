@@ -23,8 +23,7 @@ RSpec.feature 'Users can delete links' do
   scenario 'only if current user is link owner' do
     login_as(other_user)
     visit link_path(link)
-    click_link 'Delete Link'
 
-    expect(page).to have_content 'You can change only your own links'
+    expect(page).to_not have_content 'Delete Link'
   end
 end

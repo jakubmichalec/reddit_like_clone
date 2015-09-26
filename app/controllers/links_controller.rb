@@ -9,17 +9,17 @@ class LinksController < ApplicationController
   expose(:comment) { Comment.new }
   expose(:comments)
 
-  def create
-    link = current_user.links.build(link_params)
-    link.user = current_user
-    if link.save
-      flash[:notice] = "Link has been created"
-      redirect_to link
-  else
-      flash.now[:alert] = "Link has not been created"
-      render 'new'
+    def create
+      link = current_user.links.build(link_params)
+      link.user = current_user
+      if link.save
+        flash[:notice] = "Link has been created"
+        redirect_to link
+    else
+        flash.now[:alert] = "Link has not been created"
+        render 'new'
+      end
     end
-  end
 
   def update
     if link.update(link_params)

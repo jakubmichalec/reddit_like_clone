@@ -1,0 +1,18 @@
+.col-sm-12
+  .well.well-sm
+    .row
+      .col-sm-6.text-center
+        %h1.rating-num
+          = link.rank ? link.rank : 0
+        %div{:id => "link_vote_#{link.id}"}= "#{link.total_votes} total"
+        %i.fa.fa-line-chart
+      .col-sm-6
+        - if current_user
+          .col-sm-6
+            = link_to link_vote_on_path(link, value: 1),  method: :post, |
+                      id: 'vote-up', remote: true do                     |
+              %i.fa.fa-plus-square.fa-5x
+          .col-sm-6
+            = link_to link_vote_on_path(link, value: -1), method: :post, |
+                      id: 'vote-down', remote: true do                   |
+              %i.fa.fa-minus-square.fa-5x
